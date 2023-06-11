@@ -33,8 +33,16 @@ function creatCards(data){
         return;
     }
     data.forEach(el => {
+        const url = `https://en.wikipedia.org/?curid=${el.pageid}`;
         const card = document.createElement('div');
         card.className = "result-item";
-        card.inertHTML
+        card.inertHTML = `
+        <h3 class="result-title">
+        <a href =${url} target="_blank">${el.title}</a>
+        </h3>
+        <a href=${url} class="result-link" target="_blank">${url}</a>
+        <span class="result-snippet">${el.snippet}</span>
+        <br>
+        `
     });
-}e
+}

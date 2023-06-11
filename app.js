@@ -22,10 +22,12 @@ async function wikiApiCall(searchInput){
  const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&srsearch=${searchInput}`)  
 
 const data = await response.json();
- console.log(data);
+ //console.log(data);
 
  creatCards(data.query.search);
 }
+
+const resultsDisplay = document.querySelector('.results-display');
 
 function creatCards(data){
     if (!data.length){
@@ -33,10 +35,10 @@ function creatCards(data){
         return;
     }
     data.forEach(el => {
-        const url = `https://en.wikipedia.org/?curid=${el.pageid}`;
+        const url = `https://en.wikipedia.org/?curid=${el.pageid}`
         const card = document.createElement('div');
         card.className = "result-item";
-        card.inertHTML = `
+        card.innertHTML = `
         <h3 class="result-title">
         <a href =${url} target="_blank">${el.title}</a>
         </h3>
@@ -44,5 +46,6 @@ function creatCards(data){
         <span class="result-snippet">${el.snippet}</span>
         <br>
         `
+        resultsDisplay.appendChild(card)
     });
 }

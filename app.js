@@ -9,7 +9,7 @@ form.addEventListener('submit',handleSubmit)
 function handleSubmit(e){
     e.preventDefault();
     
-    if(!input.value.length){
+    if(input.value === ""){
         errorMsg.textContent = 'Please enter a search term';
         return;
     }
